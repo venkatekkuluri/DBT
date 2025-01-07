@@ -1,26 +1,15 @@
 version: 2
+
 sources:
-  - name: data
-    description: source tpch data
+  - name: SALES_DATA
     database: DBT_DB
     schema: DBT_RAW_SCHEMA
     tables:
-      - name: orders
-        description: main order tracking table
-        
-        columns:
-          - name: o_orderkey
-            description: SF*1,500,000 are sparsely populated
-            tests: 
-              - unique
-              - not_null
-
-      - name: lineitem
-        description: main lineitem table
-        columns:
-          - name: l_orderkey
-            description: Foreign Key to O_ORDERKEY
-            tests:
-              - relationships:
-                  to: source('tpch', 'orders')
-                  field: o_orderkey
+      - name: CUSTOMER
+      - name: LINEITEM
+      - name: NATION
+      - name: ORDERS
+      - name: PART
+      - name: PARTSUPP
+      - name: REGION
+      - name: SUPPLIER

@@ -1,20 +1,11 @@
-with source as (
-
-    select * from {{ source('data', 'orders') }}
-
-),
-renamed as (
-    select
-        o_orderkey as order_key,
-        o_custkey as customer_key,
-        o_orderstatus as status_code,
-        o_totalprice as total_price,
-        o_orderdate as order_date,
-        o_orderpriority as priority_code,
-        o_clerk as clerk_name,
-        o_shippriority as ship_priority,
-        o_comment as comment
-
-    from source
-)
-select * from renamed
+SELECT
+    o_orderkey AS order_key,
+    o_custkey AS customer_key,
+    o_orderstatus AS order_status,
+    o_totalprice AS total_price,
+    CAST(o_orderdate AS DATE) AS order_date,
+    CAST(o_orderpriority AS STRING) AS order_priority,
+    o_clerk AS clerk,
+    o_shippriority AS ship_priority,
+    o_comment AS comment
+FROM {{ source('SALES_DATA', 'ORDERS') }}
